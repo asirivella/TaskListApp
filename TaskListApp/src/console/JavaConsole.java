@@ -7,7 +7,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import console.CustomCaret;
+//import console.CustomCaret;
 
 public class JavaConsole extends WindowAdapter implements WindowListener, ActionListener, Runnable
 {
@@ -20,8 +20,6 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 	private final PipedInputStream pin=new PipedInputStream(); 
 	private final PipedInputStream pin2=new PipedInputStream();
 	private final PipedOutputStream pout3=new PipedOutputStream();
-
-	Thread errorThrower;
 	
 	public JavaConsole()
 	{
@@ -33,7 +31,7 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 		frame.setBounds(x,y,frameSize.width,frameSize.height);
 		
 		textArea=new JTextArea();
-		//textArea.setCaret(new CustomCaret());
+		textArea.setCaret(new CustomCaret());
 		textArea.setBackground(Color.black);
 		textArea.setForeground(Color.white);
 		textArea.setCaretColor(textArea.getForeground());

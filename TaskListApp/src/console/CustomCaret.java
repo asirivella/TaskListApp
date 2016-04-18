@@ -20,9 +20,10 @@ public class CustomCaret extends DefaultCaret {
 	  protected synchronized void damage(Rectangle r) {
 	    if (r == null) return;
 	    x = r.x;
-	    y = r.y + (r.height * 4 / 5 - 3);
-	    width = 5;
-	    height = 5;
+	    y = r.y;
+	    height = r.height;
+		if (width <= 0) width = getComponent().getWidth();
+	    repaint();
 	    repaint();
 	  }
 
@@ -33,29 +34,27 @@ public class CustomCaret extends DefaultCaret {
 
 	    int dot = getDot();
 	    Rectangle r = null;
+	    char dotChar;
 	    try {
 	      r = comp.modelToView(dot);
+	      if (r == null) return;
+	      dotChar = comp.getText(dot, 1).charAt(0);
 	    } catch (BadLocationException e) {
 	      return;
 	    }
-	    if (r == null)
-	      return;
+	    if(Character.isWhitespace(dotChar)) dotChar = '_';
 
-	    int dist = r.height * 4 / 5 - 3;
+		if ((x != r.x) || (y != r.y)) {
+			damage(r);
+			return;
+		}
 
-	    if ((x != r.x) || (y != r.y + dist)) {
-	      repaint();
-	      x = r.x;
-	      y = r.y + dist;
-	      width = 5;
-	      height = 5;
-	    }
+		g.setColor(comp.getCaretColor());
+		g.setXORMode(comp.getBackground());
 
-	    if (isVisible()) {
-	      g.setColor(comp.getCaretColor());
-	      g.drawLine(r.x, r.y + dist, r.x, r.y + dist + 4);
-	      g.drawLine(r.x, r.y + dist + 4, r.x + 4, r.y + dist + 4);
-	    }
+		width = g.getFontMetrics().charWidth(dotChar);
+		if (isVisible()) g.fillRect(r.x, r.y, width, r.height);
+		
 	  }
 
 	  public static void main(String args[]) {
