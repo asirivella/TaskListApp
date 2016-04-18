@@ -7,7 +7,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-//import console.CustomCaret;
+import console.CustomCaret;
 
 public class JavaConsole extends WindowAdapter implements WindowListener, ActionListener, Runnable
 {
