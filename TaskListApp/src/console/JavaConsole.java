@@ -4,6 +4,7 @@ package console;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import console.CustomCaret;
@@ -81,7 +82,14 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 			textArea.append("Couldn't redirect STDERR to this console\n"+se.getMessage());
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 	    } 		
-			
+		textArea.addKeyListener(new KeyListener() {
+			public void keyPressed(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {}
+			public void keyTyped(KeyEvent e)  {
+					try { pout3.write(e.getKeyChar()); } catch (IOException ex) {}
+			}
+		});
+		
 		quit=false;
 				
 		reader=new Thread(this);
@@ -90,17 +98,7 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 
 		reader2=new Thread(this);	
 		reader2.setDaemon(true);	
-		reader2.start();
-				
-		System.out.println("Hello World 2");
-		System.out.println("All fonts available to Graphic2D:\n");
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		String[] fontNames=ge.getAvailableFontFamilyNames();
-		for(int n=0;n<fontNames.length;n++)  System.out.println(fontNames[n]);		
-		System.out.println("\nLets throw an error on this console");	
-		errorThrower=new Thread(this);
-		errorThrower.setDaemon(true);
-		errorThrower.start();					
+		reader2.start();				
 	}
 	
 	public synchronized void windowClosed(WindowEvent evt)
@@ -109,6 +107,7 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 		this.notifyAll();
 		try { reader.join(1000);pin.close();   } catch (Exception e){}		
 		try { reader2.join(1000);pin2.close(); } catch (Exception e){}
+		try { pout3.close(); } catch (Exception e){}
 		System.exit(0);
 	}		
 		
@@ -120,7 +119,7 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 	
 	public synchronized void actionPerformed(ActionEvent evt)
 	{
-		textArea.setText("");
+		this.clear();
 	}
 
 	public synchronized void run()
@@ -151,15 +150,9 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 		} catch (Exception e)
 		{
 			textArea.append("\nConsole reports an Internal error.");
-			textArea.append("The error is: "+e);			
+			textArea.append("The error is: "+e);
+			textArea.setCaretPosition(textArea.getDocument().getLength());
 		}
-		
-		if (Thread.currentThread()==errorThrower)
-		{
-			try { this.wait(1000); }catch(InterruptedException ie){}
-			throw new NullPointerException("Application test: throwing an NullPointerException It should arrive at the console");
-		}
-
 	}
 	
 	public synchronized String readLine(PipedInputStream in) throws IOException
@@ -179,5 +172,42 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 	public static void main(String[] arg)
 	{
 		new JavaConsole();	
-	}			
+	}
+	
+	public void clear() {
+		textArea.setText("");
+	}
+	
+	public Color getBackground() {
+		return textArea.getBackground();
+	}
+
+	public void setBackground(Color bg) {
+		this.textArea.setBackground(bg);
+	}	
+
+	public Color getForeground() {
+		return textArea.getForeground();
+	}
+
+	public void setForeground(Color fg) {
+		this.textArea.setForeground(fg);
+		this.textArea.setCaretColor(fg);
+	}
+	
+	public Font getFont() {
+		return textArea.getFont();
+	}
+
+	public void setFont(Font f) {
+		textArea.setFont(f);
+	}
+	
+	public void setIconImage(Image i) {
+		frame.setIconImage(i);
+	}
+	
+	public void setTitle(String title) {
+		frame.setTitle(title);
+	}
 }
