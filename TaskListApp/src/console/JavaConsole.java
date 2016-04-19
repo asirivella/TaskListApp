@@ -42,15 +42,12 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setEditable(true);
-		JButton button=new JButton("clear");
 		
 		frame.getContentPane().setLayout(new BorderLayout());
 		frame.getContentPane().add(new JScrollPane(textArea),BorderLayout.CENTER);
-		frame.getContentPane().add(button,BorderLayout.SOUTH);
 		frame.setVisible(true);		
 		
 		frame.addWindowListener(this);		
-		button.addActionListener(this);
 		
 		try
 		{
