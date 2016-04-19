@@ -29,8 +29,7 @@ public class CustomCaret extends DefaultCaret {
 
 	  public void paint(Graphics g) {
 	    JTextComponent comp = getComponent();
-	    if (comp == null)
-	      return;
+	    if (comp == null) return;
 
 	    int dot = getDot();
 	    Rectangle r = null;

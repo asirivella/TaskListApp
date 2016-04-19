@@ -1,5 +1,8 @@
 package console;
 
+/*
+ * Built over example at http://www.java2s.com/Code/Java/Swing-JFC/AppendingTextPane.htm
+ */
 
 import java.io.*;
 import java.awt.*;
@@ -80,6 +83,22 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 			textArea.append("Couldn't redirect STDERR to this console\n"+se.getMessage());
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 	    } 		
+
+		try 
+		{
+			System.setIn(new PipedInputStream(this.pout3));
+		} 
+		catch (java.io.IOException io)
+		{
+			textArea.append("Couldn't redirect STDIN to this console\n"+io.getMessage());
+			textArea.setCaretPosition(textArea.getDocument().getLength());
+		}
+		catch (SecurityException se)
+		{
+			textArea.append("Couldn't redirect STDIN to this console\n"+se.getMessage());
+			textArea.setCaretPosition(textArea.getDocument().getLength());
+	    }
+		
 		textArea.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {}
@@ -131,6 +150,7 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 				{
 					String input=this.readLine(pin);
 					textArea.append(input);
+					textArea.setCaretPosition(textArea.getDocument().getLength());
 				}
 				if (quit) return;
 			}
@@ -142,6 +162,7 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 				{
 					String input=this.readLine(pin2);
 					textArea.append(input);
+					textArea.setCaretPosition(textArea.getDocument().getLength());
 				}
 				if (quit) return;
 			}			
