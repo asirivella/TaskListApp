@@ -143,7 +143,7 @@ public class TaskListApp {
 			}
 			showTaskList();
 		} catch(NumberFormatException nfe) {
-			System.out.println("Invalid taskId");
+			System.out.println("\nTask id must be a number");
 		} 
 	}
 
