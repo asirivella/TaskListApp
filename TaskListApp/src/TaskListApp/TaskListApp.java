@@ -55,10 +55,6 @@ public class TaskListApp {
 
 	public void showMenu() {
 		console.clear();
-		String input = "";
-		String choosen = "";
-		String theRest = "";
-		String[] inputArr;
 		if(!fContinue) return;
 		Scanner in = new Scanner(System.in);
 		
@@ -68,7 +64,22 @@ public class TaskListApp {
 			System.out.printf(" [ %s ]\t%s \n", 
 					item.getKey(), item.getValue().get_text());
 		}
+		System.out.println("Usage : <command> input\t ,Sample : add Buy Milk ");
+		takeInput(in);
 
+		while(fContinue)
+		{
+			takeInput(in);
+		}
+		in.close();
+	}
+	
+	public void takeInput(Scanner in){
+		String input = "";
+		String choosen = "";
+		String theRest = "";
+		String[] inputArr;
+	
 		System.out.println();
 		System.out.printf("Input: ");
 
@@ -87,16 +98,6 @@ public class TaskListApp {
 		}else {	
 			System.out.println("Invalid option.");	
 		}
-		
-		System.out.print("\nPress enter to continue... ");
-		in.nextLine();
-
-		while(fContinue)
-		{
-			console.clear();
-			showMenu();
-		}
-		in.close();
 	}
 
 	public void menuHandler(String key, String value){
@@ -117,7 +118,6 @@ public class TaskListApp {
 	}
 	
 	public void showTaskList(){
-		System.out.println();
 		System.out.println("Output: ");
 		for(int i=0; i < tasks.size(); i++){
 			task t = tasks.get(i);
@@ -148,7 +148,7 @@ public class TaskListApp {
 	}
 
 	public void exitHandler(){
-		System.out.println("\nBye! See you :) \n");
+		System.out.println("\nBye! See you later :) \n");
 		fContinue = false;
 		
 		// Adding Sleep just to make the end message visible to user.
