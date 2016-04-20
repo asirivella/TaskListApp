@@ -1,9 +1,9 @@
 package TaskListApp;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import console.JavaConsole;
 
@@ -13,7 +13,7 @@ public class TaskListApp {
 	private boolean fContinue = true;
 	private static JavaConsole console;
 	private ArrayList<task> tasks = new ArrayList<task>();
-	private Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+	private Map<String, MenuItem> menu = new LinkedHashMap<String, MenuItem>();
 	
 	public class task{
 		private String _text;
@@ -65,7 +65,7 @@ public class TaskListApp {
 		System.out.println("Please choose an option :");
 
 		for(Map.Entry<String, MenuItem> item : menu.entrySet()){
-			System.out.printf(" [%s] %s \n", 
+			System.out.printf(" [ %s ]\t%s \n", 
 					item.getKey(), item.getValue().get_text());
 		}
 
@@ -83,7 +83,7 @@ public class TaskListApp {
 		if(inputArr.length > 1) theRest = inputArr[1];
 		
 		if (choosen != "" && menu.containsKey(choosen)) {	
-			handler(choosen, theRest);	
+			menuHandler(choosen, theRest);	
 		}else {	
 			System.out.println("Invalid option.");	
 		}
@@ -99,19 +99,18 @@ public class TaskListApp {
 		in.close();
 	}
 
-	public void handler(String key, String value){
-		
+	public void menuHandler(String key, String value){
 		switch (key) {
-			case "A" :
+			case "add" :
 				addItemHandler(value);
 				break;
-			case "D" :
+			case "done" :
 				deleteItemHandler(value);
 				break;
-			case "L" :
+			case "list" :
 				showTaskList();
 				break;
-			case "E" :
+			case "exit" :
 				exitHandler();
 				break;
 		}
@@ -145,7 +144,7 @@ public class TaskListApp {
 	}
 
 	public void exitHandler(){
-		System.out.println("Bye! See you :) ");
+		System.out.println("\n Bye! See you :) ");
 		fContinue = false;
 		
 		// Adding Sleep just to make the end message visible to user.
@@ -161,11 +160,12 @@ public class TaskListApp {
 
 		TaskListApp app = new TaskListApp();
 		console = new JavaConsole();
+		console.setTitle("Task List Application");
 
-		app.addMenuItem("A", "Add tasks to the list");
-		app.addMenuItem("D", "Mark the task done");
-		app.addMenuItem("L", "Display list of tasks");
-		app.addMenuItem("E", "Exit");
+		app.addMenuItem("add", "Add tasks to the list");
+		app.addMenuItem("done", "Mark the task done");
+		app.addMenuItem("list", "Display list of tasks");
+		app.addMenuItem("exit", "Exit");
 		
 		// Sample tasks
 		app.addTask("Sample Task-1");

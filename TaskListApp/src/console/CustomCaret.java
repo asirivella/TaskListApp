@@ -12,6 +12,8 @@ import javax.swing.text.DefaultCaret;
 import javax.swing.text.JTextComponent;
 
 public class CustomCaret extends DefaultCaret {
+	  
+	  private static final long serialVersionUID = 1L;
 
 	  public CustomCaret() {
 	    setBlinkRate(500);

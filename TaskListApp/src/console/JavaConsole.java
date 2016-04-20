@@ -7,9 +7,7 @@ package console;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
-
 import console.CustomCaret;
 
 public class JavaConsole extends WindowAdapter implements WindowListener, ActionListener, Runnable
@@ -48,6 +46,7 @@ public class JavaConsole extends WindowAdapter implements WindowListener, Action
 		frame.setVisible(true);		
 		
 		frame.addWindowListener(this);		
+
 		
 		try
 		{
