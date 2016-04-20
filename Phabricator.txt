@@ -1,0 +1,6 @@
+Phabricator:-
+Phabricator is a suite of web-based software development collaboration tools, including the Differential code review tool, the Diffusion repository browser, the Herald change monitoring tool, the Maniphest bug tracker and the Phriction wiki. Phabricator integrates with Git, Mercurial, and Subversion. It is available as free software under the Apache License.
+Below are the advantages of Phabricator in code quality improvement:
+- Every project is divided into different feature (tasks) and their sub-tasks. The phabricator associates the project progress with the sub-tasks and its git commits, enabling code changes to be associated with the tasks.
+- With code review tool, every commit is shared to our fellow developers, with the help of fellow developer we could crack the code a bit earlier and together we can improve the solution.
+- For the higher level management, phabricator helps as a tool to track and access the capabilities of a developer, which in terms helps in proper work-load management.
