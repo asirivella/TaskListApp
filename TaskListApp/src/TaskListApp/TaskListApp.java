@@ -144,7 +144,7 @@ public class TaskListApp {
 	}
 
 	public void exitHandler(){
-		System.out.println("\n Bye! See you :) ");
+		System.out.println("\nBye! See you :) \n");
 		fContinue = false;
 		
 		// Adding Sleep just to make the end message visible to user.
