@@ -135,12 +135,16 @@ public class TaskListApp {
 	
 	public void deleteItemHandler(String val){
 		String str = val;
-		int id = Integer.parseInt(str);
-		
-		if(id > 0){
-			tasks.remove(id-1);
-		}
-		showTaskList();
+		try{  
+			int id = Integer.parseInt(str);
+			
+			if(id > 0){
+				tasks.remove(id-1);
+			}
+			showTaskList();
+		} catch(NumberFormatException nfe) {
+			System.out.println("Invalid taskId");
+		} 
 	}
 
 	public void exitHandler(){
