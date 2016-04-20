@@ -64,7 +64,7 @@ public class TaskListApp {
 			System.out.printf(" [ %s ]\t%s \n", 
 					item.getKey(), item.getValue().get_text());
 		}
-		System.out.println("Usage : <command> input\t ,Sample : add Buy Milk ");
+		System.out.println("\nSample : add Buy Milk ");
 		takeInput(in);
 
 		while(fContinue)
