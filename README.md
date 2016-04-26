@@ -1,13 +1,13 @@
 TASK LIST APPLICATION
 By Ananda Kishore Sirivella
 
-1.	Introduction
+# Introduction
 Time management strategies are often associated with the recommendation towards particular goals. The literature stresses themes such as - "Work in Priority Order" - set goals and prioritize "Set gravitational goals" - that attract actions automatically. There are various methods to maintain list of task. We have a simple java console application for the purpose. 
 The standalone console application that is developed using Java swing framework.
  
 
 
-2.	Usage
+# Usage
 * Support the following commands <add>, <done> taskId, <list>.
 * Sample interaction follows:
 
@@ -35,17 +35,17 @@ Input: <done> 2
 Output:
 1.	Pick up Dry Cleaners
 
-3.	Requirements
-•	Oracle JDK 7 and JRE 7 installed
-•	Execution rights to the program.
-•	Celeron 300 CPU expandable or more.
-•	64 MB or more RAM.
+# Requirements
+* Oracle JDK 7 and JRE 7 installed
+* Execution rights to the program.
+* Celeron 300 CPU expandable or more.
+* 64 MB or more RAM.
 
-4.	References
+# References
 -	https://docs.oracle.com/javase/tutorial/uiswing/
 -	http://www.java2s.com/Code/Java/Swing-Components/CatalogSwing-Components.htm
 
-5.	Contact
+# Contact
 Ananda Kishore Sirivella
 Graduate Student at University of Florida, Gainesville, FL-32601
 Linkedin: https://www.linkedin.com/in/siaki
