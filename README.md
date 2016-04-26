@@ -8,8 +8,8 @@ The standalone console application that is developed using Java swing framework.
 
 
 2.	Usage
-•	Support the following commands <add>, <done> taskId, <list>.
-•	Sample interaction follows:
+* Support the following commands <add>, <done> taskId, <list>.
+* Sample interaction follows:
 
 Input: <add> Buy Milk
 Output: Added with id# 1
